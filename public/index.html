@@ -35,6 +35,12 @@
     border-top: 1px hsl(300, 24%, 55%) solid;
   }
 
+  details {
+    font-style: italic;
+    font-size: .8rem;
+    font-weight: 200;
+  }
+
   pre,
   code {
     font-family: monospace;
@@ -93,6 +99,12 @@
 </header>
 <main>
   <h2>[Response] Server asked for:</h2>
+  <details>
+    <summary>Seeing double values?</summary>The spec is changing to make the
+    hint tokens match the header name,
+    i.e. always including the <code>Sec-CH-</code> prefix. In the transition
+    period, this demo sends both formats.
+  </details>
   <pre class="response" disabled>{{displayHeader}}</pre>
   <h2>[Subsequent Request] Client sent:</h2>
   <pre class="request" disabled>[…]</pre>
@@ -148,10 +160,12 @@
 <footer>
   <p>*️⃣ Requires Chrome 84 Beta or equivalent.<br>
     🚩 &nbsp;Enable the
-  <code>chrome://flags/#enable-experimental-web-platform-features</code> flag.<br>
-  💻 <a
-    href="https://glitch.com/edit/#!/user-agent-client-hints?path=public%2Findex.html">See
-    the code</a>.</p>
+    <code>chrome://flags/#enable-experimental-web-platform-features</code>
+    flag.<br>
+    💻 <a
+      href="https://glitch.com/edit/#!/user-agent-client-hints?path=public%2Findex.html">See
+      the code</a>.
+  </p>
 </footer>
 <script>
   'use strict';
