@@ -1,25 +1,32 @@
+// Full names for each hint
 const _HINTS = [
-  'UA-Arch',
-  'UA-Full-Version',
-  'UA-Mobile',
-  'UA-Model',
-  'UA-Platform-Version',
-  'UA-Platform',
-  'UA',
+  'Sec-CH-UA-Arch',
+  'Sec-CH-UA-Full-Version',
+  'Sec-CH-UA-Mobile',
+  'Sec-CH-UA-Model',
+  'Sec-CH-UA-Platform-Version',
+  'Sec-CH-UA-Platform',
+  'Sec-CH-UA',
 ];
 
+// Set up the express app to serve the demo
 const express = require('express');
 const app = express();
 
+// Set up .html files to be parsed as Mustach templates
 const mustacheExpress = require('mustache-express');
 app.engine('html', mustacheExpress());
- 
 app.set('view engine', 'html');
+// Serve templates out of the same directory as public assets
 app.set('views', __dirname + '/public');
+// Disable this if views aren't updating during development
 app.set('view cache', true);
 
 
+// Ensure that server works behind a reverse proxy
 app.enable('trust proxy');
+
+// HTTPS by defaults with HSTS and redirect
 app.use(function (req, res, next) {
   if (req.secure) {
     res.set('Strict-Transport-Security', 'max-age=63072000; inlcudeSubdomains; preload');
@@ -29,6 +36,7 @@ app.use(function (req, res, next) {
   res.redirect(301, 'https://' + req.headers.host + req.url);
 });
 
+// Serve the home page
 app.get('/', (req, res) => {
   let header = '[not set]';
   
