@@ -9,7 +9,7 @@
   type="image/x-icon" />
 
 <meta name="Description" content="User-Agent 👀 Client Hints" />
-<meta http-equiv="Accept-CH" content="Width, Viewport-Width, Downlink">
+<meta http-equiv="Accept-CH" content="Width, Viewport-Width, Downlink, Sec-CH-UA-Full-Version">
 <link rel="canonical" href="https://user-agent-client-hints.glitch.me/" />
 
 <style>
@@ -99,64 +99,14 @@
       JavaScript]</a> <a href="/meta.html">[via meta tag]</a></nav>
 </header>
 <main>
-  <h2>[Response] Server asked for:</h2>
-  <details>
-    <summary>Seeing double values?</summary>The spec is changing to make the
-    hint tokens match the header name,
-    i.e. always including the <code>Sec-CH-</code> prefix. In the transition
-    period, this demo sends both formats.
-  </details>
-  <pre class="response" disabled>{{displayHeader}}</pre>
-  <h2>[Subsequent Request] Client sent:</h2>
-  <pre class="request" disabled>[…]</pre>
-  <h2>[For comparison] User-Agent:</h2>
-  <pre class="user-agent" disabled>[…]</pre>
-  <h2>Server should ask for:</h2>
-  <form method="get" action="/">
-    <fieldset class="hints">
-      <legend>Available hints</legend>
-      <label>
-        <input type="checkbox" name="uach" id="sec-ch-ua-arch"
-          value="Sec-CH-UA-Arch">
-        <code>Sec-CH-UA-Arch</code>
-      </label>
-      <label>
-        <input type="checkbox" name="uach" id="sec-ch-ua-full-version"
-          value="Sec-CH-UA-Full-Version">
-        <code>Sec-CH-UA-Full-Version</code>
-      </label>
-      <label>
-        <input type="checkbox" name="uach" id="sec-ch-ua-mobile"
-          value="Sec-CH-UA-Mobile">
-        <code>Sec-CH-UA-Mobile</code>
-      </label>
-      <label>
-        <input type="checkbox" name="uach" id="sec-ch-ua-model"
-          value="Sec-CH-UA-Model">
-        <code>Sec-CH-UA-Model</code>
-      </label>
-      <label>
-        <input type="checkbox" name="uach" id="sec-ch-ua-platform-version"
-          value="Sec-CH-UA-Platform-Version">
-        <code>Sec-CH-UA-Platform-Version</code>
-      </label>
-      <label>
-        <input type="checkbox" name="uach" id="sec-ch-ua-platform"
-          value="Sec-CH-UA-Platform">
-        <code>Sec-CH-UA-Platform</code>
-      </label>
-      <label>
-        <input type="checkbox" name="uach" id="sec-ch-ua" value="Sec-CH-UA">
-        <code>Sec-CH-UA</code>
-      </label>
-    </fieldset>
-    <label>
-      <input type="checkbox" id="noheader" name="noheader" value="noheader">
-      Do <em>not</em> send
-      <code>Accept-CH</code>
-    </label>
-    <button type="submit">🔄 Send</button>
-  </form>
+  <h2>Meta tag contains:</h2>
+  <pre class="response" disabled>&lt;meta http-equiv="Accept-CH" content="Width, Viewport-Width, Downlink, Sec-CH-UA-Full-Version"&gt;</pre>
+  <h2>Subresources requests should look a bit like:</h2>
+  <pre class="request" disabled>downlink: 10
+sec-ch-ua: "Google Chrome";v="89", "Chromium";v="89", ";Not A Brand";v="99"
+sec-ch-ua-full-version: "89.0.4389.41"
+sec-ch-ua-mobile: ?0
+viewport-width: 861</pre>
 </main>
 <footer>
   <p>*️⃣ Requires Chrome 84 Beta or equivalent.<br>
@@ -170,38 +120,5 @@
 </footer>
 <script>
   'use strict';
-
-  const activeHeaders = new URLSearchParams(document.location.search);
-  for (var header of activeHeaders.values()) {
-    const checkbox = document.querySelector(`input[value=${header}]`);
-    if (checkbox) {
-      checkbox.checked = true;
-    }
-  }
-
-  const availHints = document.querySelector('.hints');
-  const headerToggle = document.querySelector('#noheader');
-
-  function toggleHeader() {
-    availHints.disabled = (headerToggle.checked) ? true : false
-  }
-
-  toggleHeader();
-  headerToggle.addEventListener('change', toggleHeader);
-
-  fetch('/show-headers.json' + document.location.search)
-    .then((res) => {
-      if (res.status === 200) {
-        res.json().then((data) => {
-          let secChText = '';
-
-          for (const header in data['Sec-CH-UA']) {
-            secChText += `${header}: ${data['Sec-CH-UA'][header]}\n`;
-          }
-
-          document.querySelector('.request').textContent = secChText;
-          document.querySelector('.user-agent').textContent = data['User-Agent'];
-        });
-      }
-    });
+  fetch('/show-headers.json' + document.location.search);
 </script>
