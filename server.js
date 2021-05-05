@@ -77,6 +77,7 @@ app.get('/', (req, res) => {
     });
 
     res.set('Accept-CH', mergedTokens);
+  
     displayHeader = 'Accept-CH: ' + mergedTokens;
   }
 
