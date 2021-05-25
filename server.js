@@ -40,7 +40,7 @@ app.use(function (req, res, next) {
 
   // Set the HSTS header if we're already on HTTPS
   if (req.secure) {
-    res.set('Strict-Transport-Security', 'max-age=63072000; inlcudeSubdomains; preload');
+    res.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
     return next();
   }
 
