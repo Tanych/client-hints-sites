@@ -15,108 +15,38 @@
 <style>
   body {
     font-family: sans-serif;
-    font-weight: 300;
-    margin: 0;
-    padding: 0;
-    color: hsl(300, 24%, 30%);
   }
-
-  h1,
-  h2,
-  nav {
-    font-size: 1.1rem;
-    font-weight: 400;
-    padding: 0.5rem;
-    margin: 0;
-    background: hsl(300, 24%, 95%);
-  }
-
-  h2 {
-    border-top: 1px hsl(300, 24%, 55%) solid;
-  }
-
-  pre,
-  code {
-    font-family: monospace;
-    font-weight: 700;
-    color: #444;
-  }
-
-  pre {
-    overflow: auto;
-    padding: 0.8rem;
-    margin: 0;
-    background: oldlace;
-  }
-
-  pre.input {
-    color: hsl(300, 24%, 40%);
-    font-style: italic;
-    font-weight: 400;
-    padding-bottom: 0;
-  }
-
-  pre.input::before {
-    content: "> ";
-    color: hsl(300, 24%, 70%);
-  }
-
-  a {
-    color: hsl(300, 24%, 50%);
-    font-weight: 500;
-  }
-
-  footer {
-    padding-left: 1rem;
+  table {
+    border: 1px solid silver;
   }
 </style>
 <header>
   <h1>User-Agent 👀 Client Hints</h1>
   <nav>
-    <a href="/">[via headers]</a>
-    <a href="/javascript.html">[via JavaScript]</a>
   </nav>
 </header>
 <main>
-  <h2>Brands</h2>
-  <pre class="input">console.log(navigator.userAgentData.brands);</pre>
-  <pre class="brands" disabled>[…]</pre>
-  <h2>Mobile indicator</h2>
-  <pre class="input">console.log(navigator.userAgentData.mobile);</pre>
-  <pre class="mobile" disabled>[…]</pre>
-  <h2>Full User-Agent data</h2>
-  <pre class="input">navigator.userAgentData
-.getHighEntropyValues(["architecture", "bitness", "model", "platform", "platformVersion", "uaFullVersion"])
-.then(ua => { console.log(ua) });</pre>
-  <pre class="high-entropy" disabled></pre>
-  <h2>[For comparison] User-Agent</h2>
-  <pre class="input">console.log(navigator.userAgent);</pre>
-  <pre class="user-agent" disabled>[…]</pre>
+  <table>
+    <th>
+      <td>Header</td>
+      <td>JavaScript</td>
+      <td>Available from</td>
+      <td>Default</td>
+      <td>This browser</td>
+      <td>Notes</td>
+    </th>
+    <tr>
+      <td><code>Sec-CH-UA</code></td>
+      <td><code>navigator.userAgentData.brands</code></td>
+      <td>Chromium 84</td>
+      <td>Yes</td>
+      <td><code>blah blah</code></td>
+      <td>Structured list of browser brands and significant versions.</td>
+  </tr>
+  </table>
 </main>
 <footer>
-  <p>*️⃣ Requires Chrome 84 Beta or equivalent.<br>
-    🚩 &nbsp;Enable the
-    <code>chrome://flags/#enable-experimental-web-platform-features</code>
-    flag.<br>
-    💻 <a
-      href="https://glitch.com/edit/#!/user-agent-client-hints?path=public%2Fjavascript.html">See
-      the code</a>.
-  </p>
 </footer>
 <script>
   "use strict";
-  const brandsText = document.querySelector(".brands");
-  brandsText.textContent = JSON.stringify(navigator.userAgentData.brands, null, "  ");
-
-  const mobileText = document.querySelector(".mobile");
-  mobileText.textContent = (navigator.userAgentData.mobile) ? 'true' : 'false';
-
-  const highEntropyText = document.querySelector(".high-entropy");
-  navigator.userAgentData
-    .getHighEntropyValues(["architecture", "bitness", "model", "platform", "platformVersion", "uaFullVersion"])
-    .then(ua => {
-      highEntropyText.textContent = JSON.stringify(ua, null, "  ");
-    });
-
-  document.querySelector('.user-agent').textContent = navigator.userAgent;
 </script>
