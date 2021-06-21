@@ -84,6 +84,13 @@ app.get('/', (req, res) => {
   res.render('index', { displayHeader: displayHeader });
 });
 
+app.get('/critical-ch', (req, res) => {
+  const tokens = 'Sec-CH-UA-Full-Version';
+  res.set('Accept-CH', tokens);
+  res.set('Critical-CH', tokens);
+  res.render('critical-ch');
+});
+
 app.get('/show-headers.json', (req, res) => {
   const uachHeaders = {};
   _HINTS.forEach((hint) => {
