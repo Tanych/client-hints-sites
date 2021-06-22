@@ -108,9 +108,9 @@ app.get('/show-headers.json', (req, res) => {
 app.use(express.static('public'));
 
 // Cache static files in production
-if (app.get('env') === 'production') {
-  app.use(express.static('public', { maxAge: '1d' }));
-}
+// if (app.get('env') === 'production') {
+//   app.use(express.static('public', { maxAge: '1d' }));
+// }
 
 const listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
