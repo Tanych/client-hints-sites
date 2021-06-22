@@ -86,6 +86,7 @@ app.get('/', (req, res) => {
 
 app.get('/critical-ch', (req, res) => {
   const tokens = 'Sec-CH-UA-Full-Version';
+  console.log('Request from', req.ip, '[Sec-CH-UA-Full-Version:', req.get(tokens), ' ]');
   res.set('Accept-CH', tokens);
   res.set('Critical-CH', tokens);
   res.render('critical-ch');
