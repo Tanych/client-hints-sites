@@ -5,6 +5,7 @@ const _HINTS = [
   'Sec-CH-UA-Platform',
   'Sec-CH-UA-Platform-Version',
   'Sec-CH-UA-Arch',
+  'Sec-CH-UA-Bitness',
   'Sec-CH-UA-Model',
 ];
 
@@ -72,9 +73,9 @@ app.get('/', (req, res) => {
 
     // Older versions of the spec did not include the 'Sec-CH-' prefix
     // during the transition, we should send both formats
-    acceptCH.forEach(hint => {
-      mergedTokens += ', ' + hint.substring(7);
-    });
+    // acceptCH.forEach(hint => {
+    //   mergedTokens += ', ' + hint.substring(7);
+    // });
 
     res.set('Accept-CH', mergedTokens);
   
