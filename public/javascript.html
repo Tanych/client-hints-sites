@@ -84,10 +84,13 @@
   <h2>Mobile indicator</h2>
   <pre class="input">console.log(navigator.userAgentData.mobile);</pre>
   <pre class="mobile" disabled>[…]</pre>
+  <h2>Platform</h2>
+  <pre class="input">console.log(navigator.userAgentData.platform);</pre>
+  <pre class="platform" disabled>[…]</pre>
   <h2>Full User-Agent data</h2>
   <pre class="input">navigator.userAgentData
 .getHighEntropyValues(["architecture", "bitness", "model", "platform", "platformVersion", "uaFullVersion"])
-.then(ua => { console.log(ua) });</pre>
+.then(ua =&gt; { console.log(ua) });</pre>
   <pre class="high-entropy" disabled></pre>
   <h2>[For comparison] User-Agent</h2>
   <pre class="input">console.log(navigator.userAgent);</pre>
@@ -95,9 +98,9 @@
 </main>
 <footer>
   <p>*️⃣ Requires Chrome 84 Beta or equivalent.<br>
-    🚩 &nbsp;Enable the
+<!--     🚩 &nbsp;Enable the
     <code>chrome://flags/#enable-experimental-web-platform-features</code>
-    flag.<br>
+    flag.<br> -->
     💻 <a
       href="https://glitch.com/edit/#!/user-agent-client-hints?path=public%2Fjavascript.html">See
       the code</a>.
@@ -107,13 +110,14 @@
   "use strict";
   const brandsText = document.querySelector(".brands");
   brandsText.textContent = JSON.stringify(navigator.userAgentData.brands, null, "  ");
-
+  const platform = document.querySelector(".platform");
+  platform.textContent = navigator.userAgentData.platform;
   const mobileText = document.querySelector(".mobile");
   mobileText.textContent = (navigator.userAgentData.mobile) ? 'true' : 'false';
 
   const highEntropyText = document.querySelector(".high-entropy");
   navigator.userAgentData
-    .getHighEntropyValues(["architecture", "bitness", "model", "platform", "platformVersion", "uaFullVersion"])
+    .getHighEntropyValues(["architecture", "bitness", "brands", "mobile", "model", "platform", "platformVersion", "uaFullVersion"])
     .then(ua => {
       highEntropyText.textContent = JSON.stringify(ua, null, "  ");
     });

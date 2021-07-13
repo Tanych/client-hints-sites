@@ -22,9 +22,9 @@ app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 app.set('views', __dirname + '/public');
 
-// if (app.get('env') === 'production') {
-//   app.set('view cache', true);
-// }
+if (app.get('env') === 'production') {
+  app.set('view cache', true);
+}
 
 // Allow server to run correctly behind a proxy
 app.enable('trust proxy');
@@ -110,9 +110,9 @@ app.get('/show-headers.json', (req, res) => {
 app.use(express.static('public'));
 
 // Cache static files in production
-// if (app.get('env') === 'production') {
-//   app.use(express.static('public', { maxAge: '1d' }));
-// }
+if (app.get('env') === 'production') {
+  app.use(express.static('public', { maxAge: '1h' }));
+}
 
 const listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
