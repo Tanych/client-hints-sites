@@ -10,6 +10,8 @@ first step to eventually reducing User-Agent string granularity.
 Learn how to update your existing functionality that relies on parsing the
 User-Agent string to make use of User-Agent Client Hints instead.
 
+📃 Read the proposal at <https://github.com/WICG/ua-client-hints>
+
 📖 Read the article on <https://web.dev/user-agent-client-hints>
 
 🐦 Ping <https://twitter.com/rowan_m> with questions.
