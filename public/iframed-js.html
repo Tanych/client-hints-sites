@@ -4,7 +4,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <title>User-Agent Client Hints</title>
-<style></style>
+<style>
+  pre.input {
+    color: hsl(300, 24%, 40%);
+    font-style: italic;
+    font-weight: 400;
+    padding-bottom: 0;
+  }
+
+  pre.input::before {
+    content: "> ";
+    color: hsl(300, 24%, 70%);
+  }
+</style>
   <pre class="input">console.log(navigator.userAgentData.brands);</pre>
   <pre class="brands" disabled>[…]</pre>
   <pre class="input">console.log(navigator.userAgentData.mobile);</pre>
