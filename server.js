@@ -22,9 +22,9 @@ app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 app.set('views', __dirname + '/public');
 
-if (app.get('env') === 'production') {
-  app.set('view cache', true);
-}
+// if (app.get('env') === 'production') {
+//   app.set('view cache', true);
+// }
 
 // Allow server to run correctly behind a proxy
 app.enable('trust proxy');
