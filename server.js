@@ -23,7 +23,7 @@ app.set('view engine', 'html');
 app.set('views', __dirname + '/public');
 
 // if (app.get('env') === 'production') {
-//   app.set('view cache', true);
+  app.set('view cache', false);
 // }
 
 // Allow server to run correctly behind a proxy
