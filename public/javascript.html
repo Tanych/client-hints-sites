@@ -35,13 +35,19 @@
     font-family: monospace;
     font-weight: 700;
     color: #444;
+    background: oldlace;
   }
 
   pre {
     overflow: auto;
     padding: 0.8rem;
     margin: 0;
-    background: oldlace;
+  }
+  
+  code {
+/*     margin: 1rem; */
+    padding: 0.5rem;
+/*     line-height: 2rem; */
   }
 
   pre.input {
@@ -89,7 +95,7 @@
   <pre class="high-entropy" disabled></pre>
   <h2>[For comparison] User-Agent</h2>
   <pre class="input">console.log(navigator.userAgent);</pre>
-  <pre class="user-agent" disabled>[…]</pre>
+  <code class="user-agent" disabled>[…]</code>
 </main>
 <footer>
   <p>*️⃣ Requires Chrome 84 or equivalent.<br>
