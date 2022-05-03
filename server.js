@@ -6,6 +6,7 @@ const _HINTS = [
   'Sec-CH-UA-Platform',
   'Sec-CH-UA-Platform-Version',
   'Sec-CH-UA-Arch',
+  'Sec-CH-UA-Wow64',
   'Sec-CH-UA-Bitness',
   'Sec-CH-UA-Model',
 ];
@@ -84,6 +85,42 @@ app.get('/', (req, res) => {
   }
 
   res.render('index', { displayHeader: displayHeader });
+});
+
+app.get('/headers', (req, res) => {
+  let displayHeader = '[not set]';
+
+  if (req.query.noheader != 'noheader') {
+    let rawCH = [];
+
+    if (typeof req.query.uach === 'string') {
+      rawCH = [req.query.uach];
+    } else if (Array.isArray(req.query.uach)) {
+      rawCH = req.query.uach;
+    }
+
+    const acceptCH = [];
+
+    rawCH.forEach((uach) => {
+      if (_HINTS.indexOf(uach) >= 0) {
+        acceptCH.push(uach);
+      }
+    });
+
+    let mergedTokens = acceptCH.join(', ');
+
+    // Older versions of the spec did not include the 'Sec-CH-' prefix
+    // during the transition, we should send both formats
+    // acceptCH.forEach(hint => {
+    //   mergedTokens += ', ' + hint.substring(7);
+    // });
+
+    res.set('Accept-CH', mergedTokens);
+  
+    displayHeader = 'Accept-CH: ' + mergedTokens;
+  }
+
+  res.render('headers', { displayHeader: displayHeader });
 });
 
 app.get('/critical-ch', (req, res) => {
