@@ -10,17 +10,4 @@
 <style>
   body { font-family: sans-serif; }
 </style>
-<p class="width"></p>
-  <img src="https://cdn.glitch.com/195b7e72-ff57-4304-8ade-ebbb1cf2022d%2Feyes_1f440.png?v=1593419184811" size>
-<script>
-  'use strict';
-  
-  fetch('/other.json' + document.location.search)
-    .then((res) => {
-      if (res.status === 200) {
-        res.json().then((data) => {
-          document.querySelector('.width').textContent = data.width;
-        });
-      }
-    });
-</script>
+  <img sizes="100vw" src="https://cdn.glitch.com/195b7e72-ff57-4304-8ade-ebbb1cf2022d%2Feyes_1f440.png?v=1593419184811">

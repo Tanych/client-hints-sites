@@ -133,6 +133,7 @@ app.get('/critical-ch', (req, res) => {
 
 
 app.get('/other', (req, res) => {
+  // res.set('Permissions-Policy', 'ch-width=(self "https://cdn.glitch.com")');
   res.set('Accept-CH', 'Sec-CH-Width');
   res.render('other');
 });
