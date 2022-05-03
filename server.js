@@ -131,6 +131,16 @@ app.get('/critical-ch', (req, res) => {
   res.render('critical-ch');
 });
 
+
+app.get('/other', (req, res) => {
+  res.set('Accept-CH', 'Sec-CH-Width');
+  res.render('other');
+});
+
+app.get('/other.json', (req, res) => {
+  res.json({ 'width': req.get('Width')});
+});
+
 app.get('/show-headers.json', (req, res) => {
   const uachHeaders = {};
   _HINTS.forEach((hint) => {
