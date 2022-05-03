@@ -133,13 +133,9 @@ app.get('/critical-ch', (req, res) => {
 
 
 app.get('/other', (req, res) => {
-  // res.set('Permissions-Policy', 'ch-width=(self "https://cdn.glitch.com")');
-  res.set('Accept-CH', 'Sec-CH-Width');
+  res.set('Permissions-Policy', 'ch-width=(self "https://cdn.glitch.me"), ch-dpr=(self "https://cdn.glitch.me")');
+  res.set('Accept-CH', 'Sec-CH-Width, Sec-CH-DPR');
   res.render('other');
-});
-
-app.get('/other.json', (req, res) => {
-  res.json({ 'width': req.get('Width')});
 });
 
 app.get('/show-headers.json', (req, res) => {
