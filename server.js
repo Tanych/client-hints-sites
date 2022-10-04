@@ -151,6 +151,11 @@ app.get('/show-headers.json', (req, res) => {
   });
 });
 
+
+app.get(['/javascript', '/javascript.html'], (req, res) => {
+  res.redirect('/');
+});
+
 // By default, fall back to serving from the `public` directory
 app.use(express.static('public'));
 
