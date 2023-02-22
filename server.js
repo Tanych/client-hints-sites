@@ -80,7 +80,8 @@ app.get('/', (req, res) => {
     // });
 
     res.set('Accept-CH', mergedTokens);
-  
+    res.set("Set-Cookie", "abc=123; SameSite=Lax; Secure");
+    
     displayHeader = 'Accept-CH: ' + mergedTokens;
   }
 
@@ -116,7 +117,8 @@ app.get('/headers', (req, res) => {
     // });
 
     res.set('Accept-CH', mergedTokens);
-  
+    res.set("Set-Cookie", "abc=123; SameSite=Lax; Secure");
+    
     displayHeader = 'Accept-CH: ' + mergedTokens;
   }
 
@@ -128,6 +130,8 @@ app.get('/critical-ch', (req, res) => {
   console.log('Request from', req.ip, '[Sec-CH-UA-Full-Version:', req.get(tokens), ' ]');
   res.set('Accept-CH', tokens);
   res.set('Critical-CH', tokens);
+  res.set("Set-Cookie", "abc=123; SameSite=Lax; Secure");
+  
   res.render('critical-ch');
 });
 
