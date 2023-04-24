@@ -117,6 +117,7 @@ app.get('/headers', (req, res) => {
     // });
 
     res.set('Accept-CH', mergedTokens);
+    res.set('Accept-CH', '');
     res.set("Set-Cookie", "abc=123; SameSite=Lax; Secure");
     
     displayHeader = 'Accept-CH: ' + mergedTokens;
