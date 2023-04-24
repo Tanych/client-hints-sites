@@ -116,7 +116,9 @@ app.get('/headers', (req, res) => {
     //   mergedTokens += ', ' + hint.substring(7);
     // });
 
-    res.set('Accept-CH', mergedTokens);
+    res.set('Accept-CH', [mergedTokens, '']);
+     res.setHeader('Link', ['Link1b', 'Link2b'])
+    //res.set('Accept-CH', " ");
     res.set("Set-Cookie", "abc=123; SameSite=Lax; Secure");
     
     displayHeader = 'Accept-CH: ' + mergedTokens;
