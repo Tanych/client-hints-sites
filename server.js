@@ -100,7 +100,7 @@ app.get('/headers', (req, res) => {
       rawCH = req.query.uach;
     }
 
-    const acceptCH = [];
+    const acceptCH = ['save-data', 'ch-save-data'];
 
     rawCH.forEach((uach) => {
       if (_HINTS.indexOf(uach) >= 0) {
