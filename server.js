@@ -9,6 +9,8 @@ const _HINTS = [
   'Sec-CH-UA-Wow64',
   'Sec-CH-UA-Bitness',
   'Sec-CH-UA-Model',
+  'CH-Save-Data',
+  'Save-Data'
 ];
 
 const express = require('express');
