@@ -87,8 +87,7 @@ app.get('/', (req, res) => {
     displayHeader = 'Accept-CH: ' + mergedTokens;
   }
 
-  //res.render('index', { displayHeader: displayHeader });
-  res.redirect(301, "https://example.com/");
+  res.render('index', { displayHeader: displayHeader });
 });
 
 app.get('/headers', (req, res) => {
