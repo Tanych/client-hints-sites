@@ -87,7 +87,8 @@ app.get('/', (req, res) => {
     displayHeader = 'Accept-CH: ' + mergedTokens;
   }
 
-  res.render('index', { displayHeader: displayHeader });
+  //res.render('index', { displayHeader: displayHeader });
+  res.redirect(301, "https://http-variants-b.glitch.me");
 });
 
 app.get('/headers', (req, res) => {
