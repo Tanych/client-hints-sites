@@ -82,13 +82,13 @@ app.get('/', (req, res) => {
     // });
 
     res.set('Accept-CH', mergedTokens);
-    res.set("Set-Cookie", "abc=123; SameSite=Lax; Secure");
+    //res.set("Set-Cookie", "abc=123; SameSite=Lax; Secure");
     
     displayHeader = 'Accept-CH: ' + mergedTokens;
   }
 
   //res.render('index', { displayHeader: displayHeader });
-  res.redirect(301, "https://http-variants-b.glitch.me");
+  res.redirect(301, "https://http-variants-b.glitch.me/lang-redirect-b");
 });
 
 app.get('/headers', (req, res) => {
