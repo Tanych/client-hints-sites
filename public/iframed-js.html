@@ -43,7 +43,7 @@
 
   const highEntropyText = document.querySelector('.high-entropy');
   navigator.userAgentData
-    .getHighEntropyValues(['architecture', 'bitness', 'brands', 'mobile', 'model', 'platform', 'platformVersion', 'uaFullVersion', 'fullVersionList'])
+    .getHighEntropyValues(['architecture', 'bitness', 'brands', 'mobile', 'model', 'platform', 'platformVersion', 'uaFullVersion', 'fullVersionList', 'formfactors'])
     .then(ua => {
       highEntropyText.textContent = JSON.stringify(ua, null, '  ');
     });

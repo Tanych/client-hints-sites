@@ -1,6 +1,7 @@
 const _HINTS = [
   'Sec-CH-UA',
   'Sec-CH-UA-Mobile',
+  'Sec-CH-UA-Form-Factors',
   'Sec-CH-UA-Full-Version',
   'Sec-CH-UA-Full-Version-List',
   'Sec-CH-UA-Platform',
