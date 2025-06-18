@@ -24,7 +24,7 @@
   <pre class="input">console.log(navigator.userAgentData.platform);</pre>
   <pre class="platform" disabled>[…]</pre>
   <pre class="input">navigator.userAgentData
-.getHighEntropyValues(["architecture", "bitness", "model", "platform", "platformVersion", "uaFullVersion", "fullVersionList"])
+.getHighEntropyValues(["architecture", "bitness", "model", "platform", "platformVersion", "uaFullVersion", "fullVersionList", "formFactors"])
 .then(ua =&gt; { console.log(ua) });</pre>
   <pre class="high-entropy" disabled></pre>
   <pre class="input">console.log(navigator.userAgent);</pre>
@@ -43,7 +43,7 @@
 
   const highEntropyText = document.querySelector('.high-entropy');
   navigator.userAgentData
-    .getHighEntropyValues(['architecture', 'bitness', 'brands', 'mobile', 'model', 'platform', 'platformVersion', 'uaFullVersion', 'fullVersionList', 'formfactors'])
+    .getHighEntropyValues(['architecture', 'bitness', 'brands', 'mobile', 'model', 'platform', 'platformVersion', 'uaFullVersion', 'fullVersionList', 'formFactors'])
     .then(ua => {
       highEntropyText.textContent = JSON.stringify(ua, null, '  ');
     });
